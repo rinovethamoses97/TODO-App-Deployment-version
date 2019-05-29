@@ -45,7 +45,17 @@ app.post('/addUser',function(req,res){
             res.send({status:"success"});
         }
     });
-})
+});
+app.post("/update",function(req,res){
+    Post.findByIdAndUpdate(req.body.id,{content:req.body.content},function(err){
+        if(err){
+            res.send({status:"error"});
+        }
+        else{
+            res.send({status:"success"});
+        }
+    })
+});
 app.post('/login',function(req,res){
     User.findOne({username:req.body.username,password:req.body.password},function(err,user){
         if(err){
